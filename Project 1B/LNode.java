@@ -1,6 +1,6 @@
 public class LNode {
-    Student data;
-    LNode next;
+    private Student data;
+    private LNode next;
 
     public LNode() {
         this.data = null;
