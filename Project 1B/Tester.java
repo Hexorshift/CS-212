@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Tester {
+    public static Scanner kybd = new Scanner(System.in);
+
     public static void main(String args[]) {
         Student student;
-        SortedLinkedList students = new SortedLinkedList();
-
         String f, l, id;
-        Scanner kybd = new Scanner(System.in);
+        SortedLinkedList students = new SortedLinkedList();
 
         for (int i = 0; i < 3; i++) {
             System.out.println("Enter first name");
@@ -19,10 +19,17 @@ public class Tester {
             students.insertSorted(student);
         }
 
+        System.out.println("");
         System.out.println(students.toString());
-        kybd.close();
-    }
 
-    public static void addEmployee(SortedLinkedList students) {
+        try {
+            System.out.println("Search for a student by ID");
+            id = kybd.next();
+            System.out.println(students.searchId(new Student(id)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        kybd.close();
     }
 }

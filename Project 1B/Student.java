@@ -9,6 +9,12 @@ public class Student implements Comparable<Student> {
         this.studentID = "0";
     }
 
+    public Student(String id) {
+        this.firstName = null;
+        this.lastName = null;
+        this.studentID = id;
+    }
+
     public Student(String firstName, String lastName, String studentId) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -16,7 +22,7 @@ public class Student implements Comparable<Student> {
     }
 
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.studentID + "\n";
+        return this.firstName + " " + this.lastName + " " + this.studentID;
     }
 
     public int compareTo(Student other) {

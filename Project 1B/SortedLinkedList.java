@@ -35,7 +35,7 @@ public class SortedLinkedList {
 
             if (currNode == null) {
                 throw new Exception("Student not found.");
-            } else if (x.compareTo(currNode.data) == 0) {
+            } else {
                 prevNode.next = currNode.next;
             }
         }
@@ -44,19 +44,37 @@ public class SortedLinkedList {
     public Student searchSorted(Student x) throws Exception {
         if (this.isEmpty()) {
             throw new Exception("Empty list.");
-        } else {
-            LNode currNode = this.head.next;
-
-            while (currNode != null && x.compareTo(currNode.data) != 0) {
-                currNode = currNode.next;
-            }
-
-            if (currNode == null) {
-                throw new Exception("Student not found.");
-            }
-
-            return currNode.data;
         }
+
+        LNode currNode = this.head.next;
+
+        while (currNode != null && (x.compareTo(currNode.data) > 0)) {
+            currNode = currNode.next;
+        }
+
+        if (currNode == null) {
+            throw new Exception("Student not found.");
+        }
+
+        return currNode.data;
+    }
+
+    public Student searchId(Student student) throws Exception {
+        if (this.isEmpty()) {
+            throw new Exception("Empty list.");
+        }
+
+        LNode currNode = this.head.next;
+
+        while (currNode != null && !student.equals(currNode.data)) {
+            currNode = currNode.next;
+        }
+
+        if (currNode == null) {
+            throw new Exception("Student not found.");
+        }
+
+        return currNode.data;
     }
 
     public String toString() {
@@ -64,7 +82,7 @@ public class SortedLinkedList {
         LNode currNode = head.next;
 
         while (currNode != null) {
-            s += currNode.data.toString();
+            s += currNode.data.toString() + "\n";
             currNode = currNode.next;
         }
 
