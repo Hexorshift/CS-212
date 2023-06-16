@@ -24,21 +24,21 @@ public class SortedLinkedList {
     public void deleteSorted(Student x) throws Exception {
         if (this.isEmpty()) {
             throw new Exception("Empty list.");
-        } else {
-            LNode prevNode = this.head;
-            LNode currNode = this.head.next;
-
-            while (currNode != null && x.compareTo(currNode.data) > 0) {
-                prevNode = currNode;
-                currNode = currNode.next;
-            }
-
-            if (currNode == null) {
-                throw new Exception("Student not found.");
-            } else {
-                prevNode.next = currNode.next;
-            }
         }
+
+        LNode prevNode = this.head;
+        LNode currNode = this.head.next;
+
+        while (currNode != null && x.compareTo(currNode.data) != 0) {
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+
+        if (currNode == null) {
+            throw new Exception("Student not found.");
+        }
+
+        prevNode.next = currNode.next;
     }
 
     public Student searchSorted(Student x) throws Exception {
@@ -48,7 +48,7 @@ public class SortedLinkedList {
 
         LNode currNode = this.head.next;
 
-        while (currNode != null && (x.compareTo(currNode.data) > 0)) {
+        while (currNode != null && x.compareTo(currNode.data) > 0) {
             currNode = currNode.next;
         }
 
