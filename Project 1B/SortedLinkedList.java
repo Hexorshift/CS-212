@@ -11,14 +11,14 @@ public class SortedLinkedList {
 
     public void insertSorted(Student x) {
         LNode prevNode = this.head;
-        LNode currNode = this.head.next;
+        LNode currNode = this.head.getNext();
 
-        while (currNode != null && x.compareTo(currNode.data) > 0) {
+        while (currNode != null && x.compareTo(currNode.getData()) > 0) {
             prevNode = currNode;
-            currNode = currNode.next;
+            currNode = currNode.getNext();
         }
 
-        prevNode.next = new LNode(x, currNode);
+        prevNode.setNext(new LNode(x, currNode));
     }
 
     public void deleteSorted(Student x) throws Exception {
@@ -27,18 +27,18 @@ public class SortedLinkedList {
         }
 
         LNode prevNode = this.head;
-        LNode currNode = this.head.next;
+        LNode currNode = this.head.getNext();
 
-        while (currNode != null && x.compareTo(currNode.data) != 0) {
+        while (currNode != null && x.compareTo(currNode.getData()) != 0) {
             prevNode = currNode;
-            currNode = currNode.next;
+            currNode = currNode.getNext();
         }
 
         if (currNode == null) {
             throw new Exception("Student not found.");
         }
 
-        prevNode.next = currNode.next;
+        prevNode.setNext(currNode.getNext());
     }
 
     public Student searchSorted(Student x) throws Exception {
@@ -46,17 +46,17 @@ public class SortedLinkedList {
             throw new Exception("Empty list.");
         }
 
-        LNode currNode = this.head.next;
+        LNode currNode = this.head.getNext();
 
-        while (currNode != null && x.compareTo(currNode.data) > 0) {
-            currNode = currNode.next;
+        while (currNode != null && x.compareTo(currNode.getData()) > 0) {
+            currNode = currNode.getNext();
         }
 
         if (currNode == null) {
             throw new Exception("Student not found.");
         }
 
-        return currNode.data;
+        return currNode.getData();
     }
 
     public Student searchId(Student student) throws Exception {
@@ -64,26 +64,26 @@ public class SortedLinkedList {
             throw new Exception("Empty list.");
         }
 
-        LNode currNode = this.head.next;
+        LNode currNode = this.head.getNext();
 
-        while (currNode != null && !student.equals(currNode.data)) {
-            currNode = currNode.next;
+        while (currNode != null && !student.equals(currNode.getData())) {
+            currNode = currNode.getNext();
         }
 
         if (currNode == null) {
             throw new Exception("Student not found.");
         }
 
-        return currNode.data;
+        return currNode.getData();
     }
 
     public String toString() {
         String s = "";
-        LNode currNode = head.next;
+        LNode currNode = head.getNext();
 
         while (currNode != null) {
-            s += currNode.data.toString() + "\n";
-            currNode = currNode.next;
+            s += currNode.getData().toString() + "\n";
+            currNode = currNode.getNext();
         }
 
         return s;
