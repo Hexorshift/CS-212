@@ -52,11 +52,11 @@ public class SortedLinkedList {
 
         LNode currNode = this.head.getNext();
 
-        while (currNode != null && x.compareTo(currNode.getData()) != 0) {
+        while (currNode != null && x.compareTo(currNode.getData()) > 0) {
             currNode = currNode.getNext();
         }
 
-        if (currNode == null) {
+        if (currNode == null || currNode.getData().compareTo(x) != 0) {
             throw new Exception("Student not found.");
         }
 

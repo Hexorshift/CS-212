@@ -37,7 +37,6 @@ public class Main {
     }
 
     public static void getChoice() {
-
         System.out.print("Enter your choice: ");
         String choice = scnr.next();
 
@@ -56,11 +55,13 @@ public class Main {
                 searchStudent();
                 break;
             case "5":
+                addCourseToStudent();
                 break;
             case "6":
                 displayStudents();
                 break;
             case "7":
+                saveRecords();
                 break;
             case "8":
                 exit = true;
@@ -142,7 +143,7 @@ public class Main {
         }
     }
 
-    public static void searchStudent() {
+    public static StudentRecord searchStudent() {
         try {
             System.out.println("1. Search student by name");
             System.out.println("2. Search student by id" + "\n");
@@ -175,10 +176,14 @@ public class Main {
                     searchStudent();
                     break;
             }
+
+            return foundStudent;
         } catch (Exception e) {
             System.out.println(e.getMessage() + "\n");
             searchStudent();
         }
+
+        return null;
     }
 
     public static void displayStudents() {
@@ -186,6 +191,40 @@ public class Main {
     }
 
     public static void addCourseToStudent() {
+        StudentRecord foundStudent = searchStudent();
+        double courseGrade;
+        int credits;
 
+        clearConsole();
+        System.out.print("Please enter the course grade: ");
+        courseGrade = scnr.nextDouble();
+
+        System.out.print("Please enter the course credit: ");
+        credits = scnr.nextInt();
+
+        foundStudent.addCourse(courseGrade, credits);
+        clearConsole();
+        System.out.println(
+                "A new course grade was added to " + foundStudent.getFirstName() + " " + foundStudent.getLastName() +
+                        ".\n");
+    }
+
+    public static void saveRecords() {
+        try {
+            System.out.print("Please enter the path of the student records file: ");
+            String filePath = scnr.next();
+            PrintWriter outFile = new PrintWriter(new File(filePath));
+
+            try {
+                outFile.print(students.toString());
+                clearConsole();
+                System.out.println("The student records were saved to " + filePath + "\n");
+            } finally {
+                outFile.close();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            saveRecords();
+        }
     }
 }
