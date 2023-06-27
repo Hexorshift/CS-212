@@ -25,7 +25,8 @@ public class Tester {
         try {
             System.out.println("Search for a student by ID");
             id = kybd.next();
-            System.out.println(students.searchId(new Student(id)));
+            student = new Student(id);
+            System.out.println(students.searchId(student).toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

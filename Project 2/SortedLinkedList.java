@@ -9,7 +9,11 @@ public class SortedLinkedList {
         return this.head.getNext() == null;
     }
 
-    public void insertSorted(Student x) {
+    public void clear() {
+        this.head.setNext(null);
+    }
+
+    public void insertSorted(StudentRecord x) {
         LNode prevNode = this.head;
         LNode currNode = this.head.getNext();
 
@@ -41,14 +45,14 @@ public class SortedLinkedList {
         prevNode.setNext(currNode.getNext());
     }
 
-    public Student searchSorted(Student x) throws Exception {
+    public StudentRecord searchSorted(StudentRecord x) throws Exception {
         if (this.isEmpty()) {
-            throw new Exception("Empty list.");
+            throw new Exception("The list is empty.");
         }
 
         LNode currNode = this.head.getNext();
 
-        while (currNode != null && x.compareTo(currNode.getData()) > 0) {
+        while (currNode != null && x.compareTo(currNode.getData()) != 0) {
             currNode = currNode.getNext();
         }
 
@@ -59,9 +63,9 @@ public class SortedLinkedList {
         return currNode.getData();
     }
 
-    public Student searchId(Student student) throws Exception {
+    public StudentRecord searchId(StudentRecord student) throws Exception {
         if (this.isEmpty()) {
-            throw new Exception("Empty list.");
+            throw new Exception("The list is empty.");
         }
 
         LNode currNode = this.head.getNext();
